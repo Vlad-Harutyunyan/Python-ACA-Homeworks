@@ -42,60 +42,31 @@ print(SegmentLength(x1,y1,x2,y2) +  SegmentLength(x2,y2,x3,y3) + SegmentLength(x
 
 #   QUESTION 3 #
 # --------------------------------------------------------- #
-# max number , uppercase becouse it is Constanta and cant changed .
-MAX = 10000; 
-#getting number for solving 
-input_number = int(input('type number for solving Goldbach’s Conjecture : '))
-# Array to store all prime less  
-# than and equal to 10^6 
-primes = []; 
-  
-def sieveSundaram(): 
-    # primes smaller than (2*x + 2) for a  
-    # number given number x. Since we want  
-    # primes smaller than MAX, we reduce  
-    # MAX to half. This array is used to  
-    # separate numbers of the form i + j + 2*i*j  
-    # from others where 1 <= i <= j 
-    marked = [False] * (int(MAX / 2) + 100); 
-    # number by doing 2*i+1 
-    for i in range(1, int((MAX*2 - 1) / 2) + 1): 
-        for j in range((i * (i + 1)) << 1,  
-                        int(MAX / 2) + 1, 2 * i + 1): 
-            marked[j] = True; 
-    # Since 2 is a prime number 
-    primes.append(2); 
-    # Print other primes. Remaining primes  
-    # are of the form 2*i + 1 such that  
-    # marked[i] is false. 
-    for i in range(1, int(MAX / 2) + 1): 
-        if (marked[i] == False): 
-            primes.append(2 * i + 1); 
-            
-# Function to perform Goldbach's conjecture 
-def findPrimes(n): 
-    # Return if number is not even  
-    # or less than 3 
-    if (n <= 2 or n % 2 != 0): 
-        print("Invalid Input"); 
-        return; 
-    # Check only upto half of number 
-    i = 0; 
-    while (primes[i] <= n // 2): 
-        # find difference by subtracting  
-        # current prime from n 
-        diff = n - primes[i]; 
-        # Search if the difference is also 
-        # a prime number 
-        if diff in primes: 
-            # Express as a sum of primes 
-            print(primes[i], diff); 
-            return; 
-        i += 1; 
-
-# Finding all prime numbers before limit 
-sieveSundaram();  
-findPrimes(input_number); 
+n_number_for_quest3 = int(input("please enter number : "))
+pairs = []
+def genprimes(n):
+    #generate primes from 2 to n
+    primes = [] 
+    for i in range(2,n):
+        prime = True
+        for a in range(2,i):
+            if i % a == 0:
+                prime = False
+        if prime == True:
+            primes.append(i)
+    return primes
+#generating primes number for n number 
+primes = genprimes(n_number_for_quest3)
+#cheking if sum of two primes number equal n number
+for i in range(len(primes)):
+    #creating temp arr for two pairs with sum equal n number
+    temparr = []
+    for j in range(len(primes)):
+        if primes[i] + primes[j] == n_number_for_quest3:
+           temparr.append(primes[i])
+           temparr.append(primes[j]) 
+           pairs.append(temparr) 
+print(pairs)
 
 #   QUESTION 4 #
 # --------------------------------------------------------- #
@@ -105,22 +76,18 @@ inp_stop = int(input('type stop : '))
 
 # function for getting divisors count for n number
 def divCount(n): 
-  
-    # sieve method for 
     # prime calculation 
-    hh = [1] * (n + 1); 
-      
+    temp = [1] * (n + 1); 
     p = 2; 
     while((p * p) < n): 
-        if (hh[p] == 1): 
+        if (temp[p] == 1): 
             for i in range((p * 2), n, p): 
-                hh[i] = 0; 
+                temp[i] = 0; 
         p += 1; 
-    # Traversing through  
     # all prime numbers 
     total = 1; 
     for p in range(2, n + 1): 
-        if (hh[p] == 1): 
+        if (temp[p] == 1): 
             count = 0; 
             if (n % p == 0): 
                 while (n % p == 0): 
@@ -173,24 +140,18 @@ inp_number_for_quest6 = int(input('type number ,pleas :'))
  
 # a given number n 
 def primeFactors(n): 
-      
     # Print the number of two's that divide n 
     while n % 2 == 0: 
         print(2,end=" ")
         n = n / 2
-    # n must be odd at this point 
-    # so a skip of 2 ( i = i + 2) can be used 
-
     for i in range(3,int(n**2)+1,2): 
-
         # while i divides n , print i ad divide n 
         while n % i == 0: 
             print(i,end=" ")
             n = n / i 
-    # Condition if n is a prime 
     # number greater than 2 
     if n > 2: 
         print(n) 
     print('\n')
-    
+ 
 primeFactors(inp_number_for_quest6) 
