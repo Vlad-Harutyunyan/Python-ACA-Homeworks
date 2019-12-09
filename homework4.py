@@ -28,36 +28,30 @@ print(summ2 - summ1)
 #-----------------------------------------------------------------------------------
 n = int(input('please input number : '))
 temp = int(input('please input numbers : '))
-acc = dec = 1
+acc = dec = True
 for i in range(n-1): 
     n = int(input('please input numbers : '))
     if n == temp : 
-        acc = 0 
-        dec = 0 
+        acc = False
+        dec = False
     elif n < temp : 
-        acc = 0  
-    else :
-        dec = 0
+        acc = False  
+    else :  
+        dec = False
 if acc :
     print ('Ascending')
 elif dec :
     print ('Descending')
 else :
-    print ('Neither')
-
+    print ('Neither') 
 #question 4
 #-----------------------------------------------------------------------------------
-qst4_list = [1.5,2.5,3]
-qst4_result = []
-
-for i in range(len(qst4_list)):
-    temp = 0;
-    for j in range(i,len(qst4_list)):
-        temp += qst4_list[j]
-    qst4_result.append(temp)
+qst4_list = (input('please type number : '))
+qst4_list = qst4_list.split(' ')
+qst4_list = [float(i) for i in qst4_list] 
+qst4_result = [sum((qst4_list[i:: + 1])) for i in range(len(qst4_list))]          
+print(qst4_result)          
  
-print(qst4_result)
-
 #question 5 
 #-------------------------------------------------------------------------------------
 qst5_list = [1,2,3,4,5,6]
