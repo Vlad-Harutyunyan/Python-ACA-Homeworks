@@ -1,4 +1,4 @@
-class Vecotr3D :
+class Vector3D :
     def __init__(self,Vx=0,Vy=0,Vz=0):
         self._Vx = Vx
         self._Vy = Vy
@@ -80,9 +80,8 @@ class Vecotr3D :
 
 #testing
 def vector_3d_test() : 
-
-    v = Vecotr3D(-1,2,3) 
-    v2 = Vecotr3D(6,7,8)
+    v = Vector3D(-1,2,3) 
+    v2 = Vector3D(6,7,8)
     v.set_Vx(2)
     v2.set_Vz(9)
     v.set_Vy(-3)
